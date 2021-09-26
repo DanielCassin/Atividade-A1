@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+#include <conio.h>
+#include <ctype.h>
+
+typedef struct { // CRIANDO STRUCT
+	char marca[20];
+	char modelo[20];
+	int ano[12];
+	char plcnum[9];
+	char plcletra[4];
+	int ind;
+} carros;
+
+carros car[10]; // DECLARANDO VARIAVEIS
+int op;
+int x;
+int f;
+int a;
+
+
+int main(int argc, char** argv) {
+	setlocale(LC_ALL,"portuguese");
+
+int i = 0; // DECLARANDO VARIAVES
+int x;
+int a;
+char mod[20];
+int an[5];
+int f;
+int an2[5];
+int aux;
+    strcpy(car[i].marca,"NULL"); // INICIANDO STRINGS
+    strcpy(car[i].modelo,"NULL");
+    strcpy(car[i].plcletra,"NULL");
+    strcpy(car[i].plcnum,"NULL");
+do{ // CRIAÇÃO DO MENU
+	printf("\n\t\t\t****SISTEMAS VEÍCULOS****\n");
+	printf("\n\n*\t1 - Cadastrar Veículo: ");
+	printf("\n\n*\t2 - Listar Veículos Cadastrados: ");
+	printf("\n\n*\t3 - Pesquisar Veículos por Modelo: \t");
+	printf("\n\n*\t4 - Pesquisar Veículos por Ano de Fabricação: ");
+	printf("\n\n*\t5 - Pesquisar Veículos a partir de um Ano: ");
+	printf("\n\n*\t6 - Sair: ");
+	printf("\n\n\n\t\t\tEscolha a Opção -> ");
+	scanf("%d", &op);
+	fflush(stdin);
+	switch (op){
+
+		case 1 : // CADASTRAR
+			car[i].ind = 0;
+			if(car[i].ind<=9){
+ 				car[i].ind=i;
+ 				printf("\n Digite a Marca:");
+ 				scanf("%s",&car[i].marca);
+ 				printf("\n Digite o Modelo:");
+ 				scanf("%s",&car[i].modelo);
+                printf("\n Digite as letras da Placa:");
+				scanf("%s",&car[i].plcletra);
+				printf("\n Digite os Número da Placa:");
+                scanf("%s",car[i].plcnum);
+ 				printf("\n Digite o Ano de Fabricação:");
+				scanf("%s",&car[i].ano);
+				car[i].plcletra[3] = '-';
+				strncat(car[i].plcletra, car[i].plcnum, 5 );
+                i=i+1;
+				system("cls");
+			}
+				else
+					{
+					printf("\n Limite de Entradas Atingido");
+					}
+				break;
+		case 2: // LISTAR VEÍCULOS
+
+			for(int x=0; x<9; x++){
+                printf("\nMarca: %s", car[x].marca);
+                printf("\nModelo: %s", car[x].modelo);
+                printf("\nAno de Fabricação: %s", car[x].ano);
+                strupr(car[x].plcletra);
+                printf("\nPlaca: %s\n\n", car[x].plcletra);
+
+			}
+			system("pause");
+			system("cls");
+			break;
+
+        case 3: // LISTAR POR MODELOS
+           printf("\n Digite o modelo a ser pesquisado:");
+           scanf("%s",&mod);
+           for (int x=0; x<i; x++){
+                if
+                    (strcmp(car[x].modelo,mod) == 0){
+                    printf("\n Modelo: %s",car[x].modelo);
+                    printf("\n Marca: %s",car[x].marca);
+                    printf("\n Ano de Fabricação: %s",car[x].ano);
+                    printf("\n Placa: %s",car[x].plcletra);
+                    printf("\n\n =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*= \n \n");
+                    x++;
+                    }
+               }
+                if (x==0)
+                    {
+                    printf("\n Modelo não encontrado \n");
+                    }
+                else
+                    {
+                    x=0;
+                    }
+            system("pause");
+			system("cls");
+            break;
+		case 4: // PESQUISAR POR ANO
+           printf("\n Digite o Ano a ser pesquisado:");
+           scanf("%s",&an);
+                for (int a=0; a<i; a++){
+                    if
+                        (strcmp(car[a].ano,an) == 0){
+                        printf("\n Ano de Fabricação: %s",car[a].ano);
+                        printf("\n Modelo: %s",car[a].modelo);
+                        printf("\n Marca: %s",car[a].marca);
+                        printf("\n Placa: %s",car[a].plcletra);
+                        printf("\n\n =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*= \n \n");
+                        a++;
+                        }
+                    }
+                    if (a==0)
+                    {
+                    printf("\n Ano não encontrado \n");
+                    }
+                else
+                    {
+                    a=0;
+                    }
+            system("pause");
+			system("cls");
+            break;
+        case 5: // PESQUISAR A PARTIR DE UM ANO ESPECIFICO
+
+           printf("\n Digite o Ano a ser pesquisado:");
+           scanf("%s",&an);
+                for(int a=0; a<i; a++){
+                    if (car[a].ano >= an)
+                        printf("\n Ano de Fabricação: %s",car[a].ano);
+                        printf("\n Marca: %s",car[a].marca);
+                        printf("\n Modelo: %s",car[a].modelo);
+                        printf("\n Placa: %s",car[a].plcletra);
+                        printf("\n\n =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*= \n \n");
+                        a++;
+                        }
+                       if (a==0)
+                    {
+                    printf("\n Ano não encontrado");
+                    }
+                else
+                    {
+                     a==-1;{
+                                printf("\n Ano não encontrado");
+                           }
+                    }
+
+            system("pause");
+			system("cls");
+            break;
+	}
+	}
+			while (op!=6 && i<=9);
+			if (i==9)
+	return 0;
+}
